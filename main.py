@@ -5,7 +5,7 @@ import numpy as np
 
 
 # Ensure the correct path to the Tesseract executable (Windows users)
-pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+#pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 
 # Function to perform OCR on an uploaded image
 def ocr_image_with_tesseract(image):
