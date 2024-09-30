@@ -1,40 +1,18 @@
 import streamlit as st
 from PIL import Image, ImageEnhance, ImageFilter
 import pytesseract
-import cv2
 import numpy as np
 
 
 # Ensure the correct path to the Tesseract executable (Windows users)
 pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 
-# Function to preprocess the image
-def preprocess_image(image):
-    # Convert to grayscale
-    gray_image = np.array(image.convert("L"))
-
-    # Denoising the image
-    denoised_image = cv2.fastNlMeansDenoising(gray_image, None, 30, 7, 21)
-
-    # Adaptive thresholding for better accuracy in variable lighting
-    threshold_image = cv2.adaptiveThreshold(denoised_image, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
-                                            cv2.THRESH_BINARY, 11, 2)
-
-    # Upscale image to enhance small text
-    resized_image = cv2.resize(threshold_image, None, fx=1.5, fy=1.5, interpolation=cv2.INTER_CUBIC)
-
-    # Convert back to PIL image for pytesseract
-    return Image.fromarray(resized_image)
-
-
 # Function to perform OCR on an uploaded image
 def ocr_image_with_tesseract(image):
     try:
-        processed_image = preprocess_image(image)
-
         # Perform OCR using pytesseract with both English and Hindi languages
         custom_config = r'--oem 3 --psm 6'
-        extracted_text = pytesseract.image_to_string(processed_image, lang='eng+hin', config=custom_config)
+        extracted_text = pytesseract.image_to_string(image, lang='eng+hin', config=custom_config)
 
         if not extracted_text.strip():
             extracted_text = "No text will be extracted. Please try a different image."
@@ -80,7 +58,7 @@ def main():
             highlighted_text = highlight_text(extracted_text, keyword)
             st.markdown(highlighted_text)
 
-    
+
     st.markdown("<hr>", unsafe_allow_html=True)
     st.markdown(
         """
