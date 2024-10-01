@@ -1,6 +1,8 @@
 # OCR and Keyword Search Web Application
 
-This is a web-based Optical Character Recognition (OCR) application that supports both Hindi and English text. It also includes a keyword search functionality to find specific terms in the extracted text.
+This is a web-based **Optical Character Recognition (OCR)** application that supports both Hindi and English text. It also includes a keyword search functionality to find specific terms in the extracted text.
+
+![Screenshot 2024-10-01 182055](https://github.com/user-attachments/assets/d97a11ab-9ad2-4026-a3af-db76b92eb82a)
 
 ---
 
