@@ -1,8 +1,4 @@
 streamlit
 pytesseract
 Pillow
-<<<<<<< HEAD
 numpy
-=======
-numpy
->>>>>>> cd960b090a5ea0916d9e83615e54f053f7932084
